@@ -132,3 +132,4 @@ if [ "$(uname)" = "Darwin" ]; then
 fi
 
 export PATH=$HOME/bin:$PATH
+export REPOS=$HOME/repos
