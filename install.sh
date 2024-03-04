@@ -1,1 +1,1 @@
-pwd
+touch dupa
