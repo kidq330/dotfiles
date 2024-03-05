@@ -1,0 +1,39 @@
+# Match host * exec "./decide %captured_host"
+# this should run something that will set the appropriate host-scoped env
+# generate a true behind-the-scenes config that following Matches will use for lookup
+# might have trouble with SSOT if values are only hard-coded here...
+# decide will essentialy need to include an ssh config parser
+# TODO: method to unset the env-variable after session ends (or resolution finishes)
+
+Host gmum
+	HostName gw.gmum
+	User -
+
+Host opc
+	HostName -
+	User opc
+
+Host s31       
+	User -
+	Hostname -
+	ProxyJump opc
+
+Host mac
+	Hostname -
+
+# me
+Host kuba
+	Hostname localhost
+
+# TODO
+# Match host kuba [[ $SSH_METHOD == localhost ]]
+# 	Hostname localhost
+# Match host kuba [[ $SSH_METHOD == local ]]
+# 	Hostname -.local
+# Match host kuba [[ $SSH_METHOD == ipv6_direct ]]
+# 	Hostname -
+# 	Port -
+# Match host kuba [[ $SSH_METHOD == tailscale ]]
+# 	Hostname tailscale_ip
+# Match host kuba [[ $SSH_METHOD == proxy(opc) ]]
+# 	ProxyJump opc
